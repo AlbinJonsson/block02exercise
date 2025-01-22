@@ -1,39 +1,64 @@
 package exercises.ex2arrays;
 
+import java.util.Scanner;
+
+import static java.lang.System.in;
+import static java.lang.System.out;
+
 public class Arrays {
 
-    /* The input functions */
+    public static final Scanner input = new Scanner(in);
+
     public static int[] getArrayOfIntsFromUser() {
-        // TODO
-        return new int[5];
+
+        Scanner input = new Scanner(System.in);
+        out.println("Input 5 integers (space between, then enter) > ");
+        String intValues = input.nextLine();
+        String[] myArray = intValues.split(" ");
+
+        int[] intArray = new int[5];
+
+        for (int i = 0; i < 5; i++) {
+            intArray[i] = Integer.parseInt(myArray[i]);
+        }
+
+        return intArray;
     }
 
     public static int getValueFromUser() {
-        // TODO
-        return 0;
+        out.println("Enter a value");
+        return Integer.parseInt(input.nextLine());
+
     }
 
-    /* The output functions */
+
     public static void printIndexToUser(int the_index, int the_value) {
-        // TODO
+        out.printf("Value %s is at index %d%n",the_index, the_value);
     }
 
     public static void printNotFoundToUser(int the_value) {
-        // TODO
+        out.printf("Value %s is not found", the_value);
     }
 
     public static void printResultToUser(int the_index, int the_value) {
-        // TODO
+        if (the_index == -1){
+            printNotFoundToUser(the_index);
+        }else{
+            printIndexToUser(the_index, the_value);
+        }
     }
 
 
-    /* The Algorithm */
     public static int findIndexOfValue(int[] a_list, int a_value) {
-        // TODO
-        return 0;
+
+        for (int i = 0; i < a_list.length; i++) {
+            if(a_value == a_list[i]){
+                return i;
+            }
+        }
+        return -1;
     }
 
-    /* The top-level behavior */
     public static void listBasicsProgram() {
         // INPUT
         int[] theList = getArrayOfIntsFromUser();
@@ -45,7 +70,6 @@ public class Arrays {
     }
 
 
-    /* Required way to make module executable */
     public static void main(String[] args) {
         listBasicsProgram();
     }
