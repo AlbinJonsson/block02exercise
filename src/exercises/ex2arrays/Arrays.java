@@ -11,7 +11,6 @@ public class Arrays {
 
     public static int[] getArrayOfIntsFromUser() {
 
-        Scanner input = new Scanner(System.in);
         out.println("Input 5 integers (space between, then enter) > ");
         String intValues = input.nextLine();
         String[] myArray = intValues.split(" ");
@@ -33,7 +32,7 @@ public class Arrays {
 
 
     public static void printIndexToUser(int the_index, int the_value) {
-        out.printf("Value %s is at index %d%n",the_index, the_value);
+        out.printf("Value %d is at index %d%n",the_index, the_value);
     }
 
     public static void printNotFoundToUser(int the_value) {

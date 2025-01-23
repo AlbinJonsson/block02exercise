@@ -4,6 +4,7 @@
 class Secret:
     def __init__(self, word):
         self.char_map = []
+
         for char in word:
             self.char_map.append((char, False))
 
