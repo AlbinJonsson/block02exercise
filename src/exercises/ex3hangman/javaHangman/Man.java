@@ -1,7 +1,9 @@
 package exercises.ex3hangman.javaHangman;
 
+import java.util.Arrays;
+
 // Representing the man
-class Man {
+public class Man {
     // instance variables are declared here
     int nrIncorrectGuesses;
 
@@ -21,8 +23,8 @@ class Man {
 
     @Override
     public String toString() {
-        // TODO
-        return "";
+
+        return String.join("", Arrays.copyOfRange(Man.parts, 0, this.nrIncorrectGuesses));
     }
 
     // ------------- Helpers and graphics --------------------------

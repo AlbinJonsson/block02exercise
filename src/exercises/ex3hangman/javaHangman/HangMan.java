@@ -9,7 +9,13 @@ package exercises.ex3hangman.javaHangman;
 */
 
 public class HangMan {
-    // TODO instance attributes must be declared here
+
+    private Man man;
+    private Secret secret;
+
+    private int nrGuesses = 0;
+    private Result result = Result.NONE;
+
 
     // Inner class, no need to understand details.
     // Accessed as HangMan.Result.NONE etc.
@@ -20,33 +26,46 @@ public class HangMan {
     }
 
     public HangMan(Man man, Secret secret) {
-        // TODO
+        this.man = man;
+        this.secret = secret;
     }
 
     // The game logic
     public boolean update(char ch) {
-        // TODO
-        return false;
+        boolean wasCorrect = this.handleGuess(ch);
+
+        if (!wasCorrect){
+            this.man.incrementHanging();
+            if(this.man.isHung()){
+                this.result = Result.LOSE;
+            }
+        }
+        else{
+            if (this.secret.isFullyGuessed()){
+                this.result = Result.WIN;
+            }
+        }
+        return wasCorrect;
     }
 
     private boolean handleGuess(char ch) {
-        // TODO
-        return false;
+        this.nrGuesses += 1;
+        return this.secret.handleGuess(ch);
     }
 
     // ----- Getters used by CLI ------------------------
     public int getNrOfGuesses() {
-        // TODO
-        return 0;
+
+        return this.nrGuesses;
     }
 
     public Result getResult() {
-        // TODO
-        return null;    // Like python's None
+
+        return this.result;    // Like python's None
     }
 
     public boolean isOver() {
-        // TODO
-        return false;
+
+        return this.result != Result.NONE;
     }
 }

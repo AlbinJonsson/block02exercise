@@ -1,11 +1,11 @@
 package exercises.ex3hangman.javaHangman;
 
 // This represents the secret word to guess
-class Secret {
-    // TODO instance variables are declared here
-    private CharAndBool[] charMap;
+public class Secret {
 
-    // TODO Constructor
+    CharAndBool[] charMap;
+
+
     public Secret(String word){
         this.charMap = new CharAndBool[word.length()];
 
@@ -42,12 +42,21 @@ class Secret {
 
     public boolean handleGuess(char charGuess) {
         boolean guessWasCorrect = false;
-        // TODO
-        return false;
+        for(CharAndBool cd: this.charMap){
+            if (cd.aChar == charGuess){
+                guessWasCorrect = true;
+                cd.aBoolean = true;
+            }
+        }
+        return guessWasCorrect;
     }
 
     public boolean isFullyGuessed() {
-        // TODO
-        return false;
+        for (CharAndBool cd: this.charMap){
+            if(!cd.aBoolean){
+                return false;
+            }
+        }
+        return true;
     }
 }
